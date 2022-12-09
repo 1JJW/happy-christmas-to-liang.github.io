@@ -174,12 +174,12 @@
      scene = new THREE.Scene();
      renderer = new THREE.WebGLRenderer({ antialias: true });
      renderer.setPixelRatio(window.devicePixelRatio);
-     renderer.setSize(window.innerWidth, window.innerHeight);
+     renderer.setSize(document.body.clientWidth, document.body.clientHeight);
      document.body.appendChild(renderer.domElement);
 
      camera = new THREE.PerspectiveCamera(
       60,
-      window.innerWidth / window.innerHeight,
+      document.body.clientWidth / document.body.clientHeight,
       1,
       1000);
 
@@ -205,7 +205,7 @@
       const renderScene = new THREE.RenderPass(scene, camera);
 
       const bloomPass = new THREE.UnrealBloomPass(
-       new THREE.Vector2(window.innerWidth, window.innerHeight),
+       new THREE.Vector2(document.body.clientWidth, document.body.clientHeight),
        1.5,
        0.4,
        0.85);
@@ -594,8 +594,8 @@
       window.addEventListener(
        "resize",
        () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
+        const width = document.body.clientWidth;
+        const height = document.body.clientHeight;
 
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
